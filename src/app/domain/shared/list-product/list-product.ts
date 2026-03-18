@@ -2,6 +2,7 @@ import { Component, signal, inject, computed } from '@angular/core';
 import { CurrencyPipe } from '@angular/common';
 import { productModel } from '../models/product.model';
 import { ProductServices } from '../services/product-services';
+import { CarService } from '../services/car-service';
 
 @Component({
   selector: 'app-list-product',
@@ -14,6 +15,7 @@ export class ListProduct {
   private productService = inject(ProductServices);
   products = signal<productModel[]>([]);
   selectedType = signal<string>('All');
+  private cartService = inject(CarService);
 
   categories = computed(() => {
     const types = this.products().map(p => p.tipo_producto);
@@ -44,6 +46,17 @@ export class ListProduct {
 
   changeFilter(type: string) {
     this.selectedType.set(type);
+  }
+
+  addToCart(product: productModel){
+
+    this.cartService.addToCart(
+      product.id_producto,
+      product.valor_producto,
+      1
+    );
+
+
   }
 
   }

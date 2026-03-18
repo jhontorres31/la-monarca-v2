@@ -20,7 +20,11 @@
                 <img [src]="product.imagen_producto" [alt]="product.nombre_producto" class="min-w min-h object-cover mb-2">
                 <h3 class="font-bold text-lg">{{ product.nombre_producto }}</h3>
                 <p class="text-gray-600">{{ product.valor_producto | currency: 'COP ': 'symbol':'1.0' }}</p>
-                <button class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition-all mt-2 text-white">Add to Cart</button>
+                <button
+                (click)="$event.stopPropagation(); addToCart(product)" 
+                class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition-all mt-2 text-white w-full cursor-pointer">
+                Add to Cart
+            </button>
             </div>
         }
     </div>
