@@ -8,7 +8,7 @@
   
       <ul class="flex space-x-6 font-medium">
         <li><a href="#" class="hover:text-blue-400 transition-colors">Inicio</a></li>
-        <li><a href="#" class="hover:text-blue-400 transition-colors">Acerca de</a></li>
+        <li><a href="#" class="hover:text-blue-400 transition-colors">Pedidos</a></li>
         <li><a href="#" class="hover:text-blue-400 transition-colors">Contacto</a></li>
       </ul>
       <div>
@@ -29,53 +29,28 @@
       @if(hideLogin()) {
         <app-login (onClose)="cerrarLogin()"></app-login>
       }
-      <button class=" hover:bg-blue-700  rounded-lg  px-4 py-2 transition-all">
-      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="9" cy="21" r="1"></circle>
-        <circle cx="20" cy="21" r="1"></circle>
-        <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-      </svg>
-    </button>
+
+
+     <button (click)="$event.stopPropagation(); carService.hideSideMenu.set(false)" 
+     class="relative hover:bg-amber-700 rounded-lg px-4 py-2 transition-all">
+
+  @if (carService.cart().length > 0) {
+    <span class="absolute top-0 right-1 bg-red-500 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full">
+      {{ carService.cart().length }}
+    </span>
+  }
+  
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="9" cy="21" r="1"></circle>
+    <circle cx="20" cy="21" r="1"></circle>
+    <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+  </svg>
+</button>
+
+<app-cart/>
   </div>
     </div>
   </nav>
   
 
-  <div class="fixed border-l-2 top-0 right-0 z-40 w-72 h-screen p-4 overflow-y-auto transition-transform bg-white"
-     [class.translate-x-full]="hideSideMenu()">
   
-  <div class="flex justify-between items-center">
-    <p class="text-xl">My Cart</p>
-    <button (click)="toogleSideMenu()">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-      </svg>
-    </button>
-  </div>
-
-  <div class="pt-4 flex flex-col gap-2">
-    @for (product of cart(); track product.id_compra) {
-      <div class="flex justify-between items-center border-b pb-2">
-        <div class="flex space-x-2 items-center">
-          <img class="w-10 h-10 object-cover" [src]="product.images[0]" [alt]="product.title">
-          <div class="flex flex-col">
-            <h3 class="text-sm font-medium">{{product.title}}</h3>
-            <button (click)="eliminarProducto(product.id_compra)" class="text-left text-xs text-red-500 hover:underline">
-              Quitar
-            </button>
-          </div>
-        </div>
-        <p class="font-bold">${{product.price}}</p>
-      </div>
-    } @empty {
-      <p class="text-gray-400 text-center py-10">El carrito está vacío</p>
-    }
-
-    <div class="mt-4 border-t pt-4">
-      <p class="text-lg font-bold flex justify-between">
-        <span>Total:</span>
-        <span>${{total()}}</span>
-      </p>
-    </div>
-  </div>
-</div>

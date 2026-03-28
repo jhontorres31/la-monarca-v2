@@ -2,12 +2,13 @@ import { Component, signal, inject } from '@angular/core';
 import { Login } from '../../login/login';
 import { LoginService } from '../services/login-service';
 import { CarService } from '../services/car-service';
-import { carmodel } from '../models/car.model';
+//import { carmodel } from '../models/car.model';
+import { Cart } from '../../cart/cart';
 
 
 @Component({
   selector: 'app-header',
-  imports: [Login],
+  imports: [Login, Cart],
   templateUrl: './header.html',
   styleUrl: './header.css',
 })
@@ -18,7 +19,7 @@ export class Header {
 
   user = this.loginService.currentUser;
 
-  private carService = inject(CarService);
+  public carService = inject(CarService);
 
   cart = this.carService.cart;
   total = this.carService.total;
@@ -38,16 +39,6 @@ export class Header {
     this.loginService.logout();
   }
 
-  toogleSideMenu() {
-    this.hideSideMenu.update(v => !v);
-    if (!this.hideSideMenu()) {
-      this.carService.loadCart();
-  }
-  }
-  eliminarProducto(id: number) {
-    this.carService.removeFromCart(id);
   
-}
-
 
 }
