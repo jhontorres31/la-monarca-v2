@@ -15,6 +15,8 @@ export class Registro {
   email = model('');
   direccion = model ('');
   password = model ('');
+  ciudad = model ('');
+  telefono = model ('');
 
   cerrar() {
     this.onClose.emit();
@@ -22,7 +24,7 @@ export class Registro {
 
   registrarUsuario(){
 
-    const body = {nombresyapellidos: this.nombresyapellidos(), cedula: this.cedula(), email: this.email(), direccion: this.direccion(), password: this.password()};
+    const body = {nombresyapellidos: this.nombresyapellidos(), cedula: this.cedula(), email: this.email(), telefono: this.telefono(), ciudad: this.ciudad(), direccion: this.direccion(), password: this.password()};
   
     this.registerServices.register(body).subscribe({
       next: (res) =>{

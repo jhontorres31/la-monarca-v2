@@ -32,6 +32,22 @@
       class="w-full  text-black border border-gray-300 p-2 rounded focus:ring-2 focus:ring-amber-600 outline-none" 
     />
 
+      <input 
+    type="text"
+    [value]="ciudad()"
+    (input)="ciudad.set($any($event.target).value)" 
+    placeholder="Ciudad" 
+    class="w-full  text-black border border-gray-300 p-2 rounded focus:ring-2 focus:ring-amber-600 outline-none" 
+  />
+
+  <input 
+    type="text"
+    [value]="telefono()"
+    (input)="telefono.set($any($event.target).value)" 
+    placeholder="Telefono" 
+    class="w-full  text-black border border-gray-300 p-2 rounded focus:ring-2 focus:ring-amber-600 outline-none" 
+  />
+
     <input 
     type="text"
     [value]="direccion()"

@@ -14,12 +14,12 @@ export class ListProduct {
 
   private productService = inject(ProductServices);
   products = signal<productModel[]>([]);
-  selectedType = signal<string>('All');
+  selectedType = signal<string>('Todos');
   private cartService = inject(CarService);
 
   categories = computed(() => {
     const types = this.products().map(p => p.tipo_producto);
-    return ['All', ...new Set(types)];
+    return ['Todos', ...new Set(types)];
   });
 
   
@@ -27,13 +27,14 @@ export class ListProduct {
     const currentFilter = this.selectedType();
     const allProducts = this.products();
 
-    if (currentFilter === 'All') return allProducts;
+    if (currentFilter === 'Todos') return allProducts;
     
     return allProducts.filter(p => p.tipo_producto === currentFilter);
   });  
 
   ngOnInit(){
 
+    this.cartService.hideSideMenu.set(true)
     this.productService.getProducts().subscribe({
       next: (data) => {
         this.products.set(data); 

@@ -1,3 +1,21 @@
-<app-header></app-header>
-<app-list-product></app-list-product>
-<app-footer></app-footer>
+<!-- Contenedor con fondo sutil para dar contraste -->
+<div class="flex flex-col min-h-screen bg-slate-100 font-sans">
+    
+    <!-- Header con degradado vibrante -->
+    <header class="relative h-64 w-full bg-gradient-to-r from-orange-500 to-amber-400">
+        <app-header />
+        
+        <!-- Máscara de degradado hacia el fondo de la página -->
+        <div class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-slate-100 to-transparent z-0"></div>
+    </header>
+
+    <!-- Main: El z-10 y -mt-24 hacen que los productos NO se vean pálidos -->
+    <main class="flex-grow z-10 -mt-24 container mx-auto px-4 pb-12">
+        <router-outlet />
+    </main>
+
+    <app-footer />
+
+    <!-- Carrito siempre encima de todo -->
+    
+</div>

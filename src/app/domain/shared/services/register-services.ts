@@ -10,8 +10,9 @@ export class RegisterServices {
   private url = 'http://localhost:3000/usuarios';
   
 
-  register(data: {nombresyapellidos:string; cedula: string; email: string; direccion:string, password:string}){
+  register(data: {nombresyapellidos:string; cedula: string; email: string; telefono: string; ciudad: string; direccion:string; password:string}){
       return this.http.post(this.url, data);
   }
+  
   
 }

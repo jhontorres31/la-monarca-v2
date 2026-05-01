@@ -1,5 +1,6 @@
 @if (!carService.hideSideMenu()) {
-    <div class="fixed inset-0 bg-black/40 z-40 transition-opacity"></div>
+    <div class="fixed inset-0 bg-black/40 z-40 transition-opacity"
+    (click)="closeCart()"></div>
   }
   
   <div class="fixed border-l-2 top-0 right-0 z-50 w-72 h-screen p-4 overflow-y-auto transition-transform duration-300 bg-white shadow-2xl"
@@ -42,7 +43,7 @@
           <span>Total:</span>
           <span>${{total() | number}}</span>
         </div>
-        <button class="w-full bg-blue-600 text-white py-3 rounded-lg mt-4 font-bold hover:bg-blue-700 transition-colors shadow-lg active:scale-95">
+        <button (click)="pagarPedido()" class="w-full bg-blue-600 text-white py-3 rounded-lg mt-4 font-bold hover:bg-blue-700 transition-colors shadow-lg active:scale-95">
           Pagar pedido
         </button>
       </div>

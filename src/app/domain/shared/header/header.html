@@ -1,20 +1,40 @@
-<nav class="bg-amber-600 text-white p-4 shadow-lg">
+<nav class=" h-40  text-white pt-0.5 p-4  ">
     <div class="container mx-auto flex justify-between items-center">
       
       <div class="text-xl font-bold tracking-wider flex items-center gap-2">
+        <a class="flex items-center " routerLink="/">
         <img src="monarca2.svg" alt="logo" class="w-40 h-40">
-        <h1>La Monarca</h1> <span class="text-blue-400"></span>
+        <h1 class="font-sans font-black italic tracking-tight text-white uppercase text-2xl drop-shadow-sm">LA MONARCA</h1> 
+        </a>
       </div>
-  
-      <ul class="flex space-x-6 font-medium">
-        <li><a href="#" class="hover:text-blue-400 transition-colors">Inicio</a></li>
-        <li><a href="#" class="hover:text-blue-400 transition-colors">Pedidos</a></li>
-        <li><a href="#" class="hover:text-blue-400 transition-colors">Contacto</a></li>
+      
+      <div class="flex-col items-center  ">
+      <ul class="flex space-x-6 justify-center text-white">
+        <li><a routerLink="/" (click)="$event.stopPropagation()" class="hover:text-white transition-colors">Inicio</a></li>
+        <li><a routerLink="/pedidos" (click)="$event.stopPropagation()" class="hover:text-white transition-colors">Pedidos</a></li>
+        <li><a routerLink="/contacto" (click)="$event.stopPropagation()" class="hover:text-white transition-colors">Contacto</a></li>
       </ul>
-      <div>
+      
+        <input class="text-gray-600 
+                      bg-white 
+                        mt-4 
+                        w-2xl 
+                        h-10 pl-5 
+                        rounded-lg 
+                        p-4 
+                        shadow-sm 
+                        transition-all 
+                        duration-200
+                        focus:outline-none 
+                        focus:border-amber-400 
+                        focus:ring-2 
+                        focus:ring-amber-400/20 "  type="text" placeholder="Buscar productos, marcas y más...">
+      
+      </div>
+      <div class="flex">
         @if (user()) {
           <div class="flex items-center gap-3">
-            <span class="text-sm font-semibold bg-amber-700 px-3 py-1 rounded-full">
+            <span class="text-sm font-semibold bg-amber-500 px-3 py-1 rounded-full">
               Hola, {{ user()?.nombre }}
             </span>
             <button (click)="logOut()" class="text-white hover:text-red-200 text-sm underline transition-colors">
@@ -22,7 +42,7 @@
             </button>
           </div>
         } @else {
-          <button (click)="toggleLogin()" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded-lg transition-all">
+          <button (click)="toggleLogin()" class="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg transition-all">
             Login
           </button>
         }
@@ -47,10 +67,12 @@
   </svg>
 </button>
 
-<app-cart/>
+
   </div>
     </div>
   </nav>
+
+  <app-cart/>
   
 
   

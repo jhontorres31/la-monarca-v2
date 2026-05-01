@@ -2,29 +2,28 @@ import { Component, signal, inject } from '@angular/core';
 import { Login } from '../../login/login';
 import { LoginService } from '../services/login-service';
 import { CarService } from '../services/car-service';
-//import { carmodel } from '../models/car.model';
+
 import { Cart } from '../../cart/cart';
+import { RouterLink, Router } from "@angular/router";
+
 
 
 @Component({
   selector: 'app-header',
-  imports: [Login, Cart],
+  imports: [Login, Cart, RouterLink],
   templateUrl: './header.html',
   styleUrl: './header.css',
 })
 export class Header {
 
+  private router = inject(Router);
+  private loginService = inject(LoginService);
+  public carService = inject(CarService);
+  
   hideLogin = signal(false);
-  loginService = inject(LoginService);
-
   user = this.loginService.currentUser;
 
-  public carService = inject(CarService);
-
-  cart = this.carService.cart;
-  total = this.carService.total;
-  hideSideMenu = signal(true);
-
+  
 
 
   toggleLogin() {
