@@ -1,14 +1,17 @@
 import { Component, output, inject, model, signal } from '@angular/core';
 import { RegisterServices } from '../shared/services/register-services';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-registro',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './registro.html',
   styleUrl: './registro.css',
 })
 export class Registro {
   private registerServices = inject(RegisterServices);
+    aceptaMayorEdad = signal(false);
+     aceptaTerminos = signal(false);
   onClose = output<void>();
   nombresyapellidos = model('');
   cedula = model('');
@@ -37,4 +40,10 @@ export class Registro {
     }); 
 
   }
+
+
+
+registrarConGoogle() {
+  // Aquí conectas con tu provider de Google (Firebase Auth, etc.)
+}
 }

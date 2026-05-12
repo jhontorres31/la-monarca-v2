@@ -26,6 +26,7 @@ export class PedidoService {
   
   private http = inject(HttpClient);
   private baseUrl = 'http://localhost:3000';
+  
 
   crearPedido(data: CrearPedidoPayload) {
     return this.http.post(`${this.baseUrl}/finalizar-pedido`, data); 
@@ -33,6 +34,10 @@ export class PedidoService {
 
   getPedidosPorUsuario(idUsuario: number): Observable<pedidoModel[]> {
     return this.http.get<pedidoModel[]>(`${this.baseUrl}/pedidos/${idUsuario}`);
+  }
+
+  eliminarPedido(id_pedido: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/eliminar-pedido/${id_pedido}`);
   }
 }
 

@@ -3,10 +3,11 @@ import { CurrencyPipe } from '@angular/common';
 import { productModel } from '../models/product.model';
 import { ProductServices } from '../services/product-services';
 import { CarService } from '../services/car-service';
+import { RouterLink } from "@angular/router";
 
 @Component({
   selector: 'app-list-product',
-  imports: [CurrencyPipe],
+  imports: [CurrencyPipe, RouterLink],
   templateUrl: './list-product.html',
   styleUrl: './list-product.css',
 })

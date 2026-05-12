@@ -1,49 +1,93 @@
 <div class="fixed inset-0 z-50 flex items-center justify-center">
-  
-  <div class="absolute inset-0 bg-black/50 backdrop-blur-sm" (click)="cerrar()"></div>
+  <div class="absolute inset-0 bg-black/60 backdrop-blur-sm" (click)="cerrar()"></div>
 
-  <form 
+  <form
     (submit)="$event.preventDefault();"
-    class="relative bg-white p-10 rounded-xl shadow-2xl flex flex-col items-center w-full max-w-md gap-4">
-    
-    <h1 class="text-2xl font-bold text-gray-800">Login</h1>
-    
-    <input 
-      type="text" 
-      [value]="email()"
-      (input)="email.set($any($event.target).value)"
-      placeholder="Correo" 
-      class="w-full text-black border border-gray-300 p-2 rounded focus:ring-2 focus:ring-amber-600 outline-none" 
-    />
-    
-    <input 
-      type="password" 
-      [value]="password()"
-      (input)="password.set($any($event.target).value)"
-      placeholder="Contraseña" 
-      class="w-full  text-black border border-gray-300 p-2 rounded focus:ring-2 focus:ring-amber-600 outline-none" 
-    />
-    
-    <button 
-      (click)="iniciarSesion()"
-      type="button" 
-      class="w-full bg-amber-600 text-white py-2 rounded font-bold hover:bg-amber-700 transition-colors">
-      Entrar
-    </button>
+    class="relative bg-white rounded-[18px] shadow-2xl w-full max-w-sm overflow-hidden">
 
-    <button 
-    type="button"
-    (click)="toggleRegister()"
-    class="w-full border border-amber-600 rounded bg-white text-amber-600 font-bold hover:bg-gray-200 transition-colors">
-      Registrarme
-    </button>
-    
-    <button 
-    type="button" 
-    (click)="cerrar()" class="text-gray-400 text-sm underline hover:text-gray-600">
-      Cancelar
-    </button>
+    <!-- Header naranja con ola -->
+    <div class="relative px-8 pt-8 pb-10"
+         style="background: linear-gradient(135deg, #F97316 0%, #EA580C 50%, #C2410C 100%)">
+      <div class="flex items-center gap-3">
+        <div class="w-12 h-12 rounded-full flex items-center justify-center text-2xl"
+             style="background: rgba(255,255,255,0.15); border: 2px solid rgba(255,255,255,0.4)">
+          🦋
+        </div>
+        <div>
+          <p class="text-white font-black tracking-widest text-2xl leading-none"
+             style="font-family: 'Bebas Neue', 'Impact', sans-serif">LA MONARCA</p>
+          <p class="text-white/75 text-xs tracking-wide">Expres · Licores & Bebidas</p>
+        </div>
+      </div>
+      <!-- Ola decorativa -->
+      <svg class="absolute bottom-[-1px] left-0 w-full h-8" viewBox="0 0 400 30"
+           preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0,15 C100,28 300,2 400,15 L400,30 L0,30 Z" fill="white"/>
+      </svg>
+    </div>
+
+    <!-- Cuerpo del formulario -->
+    <div class="px-8 pt-6 pb-6 flex flex-col gap-4">
+
+      <div class="flex flex-col gap-1">
+        <label class="text-[11px] font-semibold text-gray-500 tracking-widest uppercase">
+          Correo electrónico
+        </label>
+        <input
+          type="email"
+          [value]="email()"
+          (input)="email.set($any($event.target).value)"
+          placeholder="tu@correo.com"
+          class="bg-gray-50 border border-gray-200 rounded-[10px] px-4 py-3 text-sm text-black outline-none transition-all
+                 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/15 focus:bg-white"
+        />
+      </div>
+
+      <div class="flex flex-col gap-1">
+        <label class="text-[11px] font-semibold text-gray-500 tracking-widest uppercase">
+          Contraseña
+        </label>
+        <input
+          type="password"
+          [value]="password()"
+          (input)="password.set($any($event.target).value)"
+          placeholder="••••••••"
+          class="bg-gray-50 border border-gray-200 rounded-[10px] px-4 py-3 text-sm text-black outline-none transition-all
+                 focus:border-orange-500 focus:ring-2 focus:ring-orange-500/15 focus:bg-white"
+        />
+      </div>
+
+      <button
+        (click)="iniciarSesion()"
+        type="button"
+        class="w-full text-white font-semibold py-3 rounded-[10px] mt-1 transition-all hover:opacity-90 active:scale-[0.98]"
+        style="background: linear-gradient(135deg, #F97316, #EA580C)">
+        Entrar
+      </button>
+
+      <div class="flex items-center gap-3">
+        <div class="flex-1 h-px bg-gray-200"></div>
+        <span class="text-xs text-gray-400 whitespace-nowrap">¿No tienes cuenta?</span>
+        <div class="flex-1 h-px bg-gray-200"></div>
+      </div>
+
+      <button
+        type="button"
+        (click)="toggleRegister()"
+        class="w-full bg-transparent text-orange-600 border border-orange-500 font-semibold py-3 rounded-[10px]
+               hover:bg-orange-50 transition-colors">
+        Registrarme
+      </button>
+
+      <button
+        type="button"
+        (click)="cerrar()"
+        class="text-gray-400 text-sm underline hover:text-gray-600 transition-colors py-1">
+        Cancelar
+      </button>
+    </div>
   </form>
+
   @if(hideRegister()) {
     <app-registro (onClose)="cerrarRegister()"></app-registro>
   }

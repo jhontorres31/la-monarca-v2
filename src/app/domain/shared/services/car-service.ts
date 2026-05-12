@@ -17,18 +17,18 @@ export class CarService {
   total = computed(() => this.cart().reduce((acc, p) => acc + p.price, 0));
 
   constructor() {
-    // Monitorea el login/logout para cargar o limpiar
+    
     effect(() => {
       if (this.loginService.currentUser()) {
         this.loadCart();
       } else {
-        this.cart.set([]); // Limpia el carro al cerrar sesión
+        this.cart.set([]); 
       }
     });
   }
 
   loadCart() {
-    // Usamos el ID sea 'id' o 'id_usuario' para que no falle
+    
     const user = this.loginService.currentUser();
     const userId = user?.id || (user as any)?.id_usuario;
 
@@ -46,7 +46,7 @@ export class CarService {
       })))
     ).subscribe({
       next: (data) => this.cart.set(data),
-      error: () => this.cart.set([]) // Si el servidor da error (404), vaciamos el signal
+      error: () => this.cart.set([]) 
     });
   }
 

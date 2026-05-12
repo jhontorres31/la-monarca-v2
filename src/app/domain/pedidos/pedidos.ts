@@ -44,5 +44,17 @@ export class Pedidos {
     }
   }
 
+  eliminar(id: number) {
+  if (confirm('¿Estás seguro de que deseas cancelar este pedido de La Monarca?')) {
+    this.pedidoService.eliminarPedido(id).subscribe({
+      next: () => {
+        // Filtramos la lista actual para quitar el eliminado (Optimistic UI)
+        this.misPedidos.update(pedidos => pedidos.filter(p => p.id_pedido !== id));
+      },
+      error: (err) => console.error('Error al eliminar:', err)
+    });
+  }
+}
+
 
 }
