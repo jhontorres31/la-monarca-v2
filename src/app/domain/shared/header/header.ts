@@ -2,6 +2,7 @@ import { Component, signal, inject } from '@angular/core';
 import { Login } from '../../login/login';
 import { LoginService } from '../services/login-service';
 import { CarService } from '../services/car-service';
+import { ProductServices } from '../services/product-services';
 
 import { Cart } from '../../cart/cart';
 import { RouterLink, Router } from "@angular/router";
@@ -19,6 +20,7 @@ export class Header {
   private router = inject(Router);
   private loginService = inject(LoginService);
   public carService = inject(CarService);
+  public productService = inject(ProductServices)
   
   hideLogin = signal(false);
   user = this.loginService.currentUser;
@@ -37,6 +39,13 @@ export class Header {
   logOut(){
     this.loginService.logout();
   }
+
+  onSearch(event: Event){
+
+    const element = event.target as HTMLInputElement;
+    this.productService.searchQuery.set(element.value);
+  }
+
 
   
 

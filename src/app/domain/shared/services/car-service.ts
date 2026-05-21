@@ -54,7 +54,7 @@ export class CarService {
     const user = this.loginService.currentUser();
     const userId = user?.id || (user as any)?.id_usuario;
 
-    if (!userId) return alert('Inicia sesión primero');
+    if (!userId) return console.log('Inicia sesión primero');
 
     const payload = {
       id_usuario: userId,

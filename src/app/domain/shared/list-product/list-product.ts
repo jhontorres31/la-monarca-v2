@@ -5,6 +5,7 @@ import { ProductServices } from '../services/product-services';
 import { CarService } from '../services/car-service';
 import { RouterLink } from "@angular/router";
 
+
 @Component({
   selector: 'app-list-product',
   imports: [CurrencyPipe, RouterLink],
@@ -14,36 +15,34 @@ import { RouterLink } from "@angular/router";
 export class ListProduct {
 
   private productService = inject(ProductServices);
-  products = signal<productModel[]>([]);
-  selectedType = signal<string>('Todos');
   private cartService = inject(CarService);
 
+  products = signal<productModel[]>([]);
+  selectedType = signal<string>('Todos');
+  
+
   categories = computed(() => {
-    const types = this.products().map(p => p.tipo_producto);
+    const types = this.productService.allProducts().map(p => p.tipo_producto);
     return ['Todos', ...new Set(types)];
   });
 
   
-  filteredProducts = computed(() => {
-    const currentFilter = this.selectedType();
-    const allProducts = this.products();
+  finalFilterProducts = computed(()=>{
 
-    if (currentFilter === 'Todos') return allProducts;
-    
-    return allProducts.filter(p => p.tipo_producto === currentFilter);
-  });  
+    const category = this.selectedType();
+    const searchProducts = this.productService.filteredProducts();
+
+    if(category === 'Todos') return searchProducts;
+
+    return searchProducts.filter(p=>p.tipo_producto === category);
+  })
 
   ngOnInit(){
 
     this.cartService.hideSideMenu.set(true)
-    this.productService.getProducts().subscribe({
-      next: (data) => {
-        this.products.set(data); 
-      },
-      error: (err) => {
-        console.error('Error al cargar productos', err);
-      }
-    });
+    if(this.productService.allProducts().length ===0){
+      this.productService.getProducts();
+    }
   }
 
   changeFilter(type: string) {

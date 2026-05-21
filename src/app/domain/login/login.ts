@@ -35,6 +35,7 @@ export class Login {
   });
   }
 
+  showPassword = signal(false);
   
 
   toggleRegister() {

@@ -15,7 +15,8 @@
         <li><a routerLink="/contacto" (click)="$event.stopPropagation()" class="hover:text-white transition-colors">Contacto</a></li>
       </ul>
       
-        <input class="text-gray-600 
+        <input    (input)="onSearch($event)"
+                  class="text-gray-600 
                       bg-white 
                         mt-4 
                         w-2xl 

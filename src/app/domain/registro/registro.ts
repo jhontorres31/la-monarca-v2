@@ -41,6 +41,18 @@ export class Registro {
 
   }
 
+  blockNumbers(event: KeyboardEvent) {
+  if (event.key >= '0' && event.key <= '9') {
+    event.preventDefault();
+  }
+}
+
+onlyNumbers(event: KeyboardEvent) {
+  if (event.key.length === 1 && !/[0-9]/.test(event.key)) {
+    event.preventDefault();
+  }
+}
+
 
 
 registrarConGoogle() {
