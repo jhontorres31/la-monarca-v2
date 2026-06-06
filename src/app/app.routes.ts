@@ -3,6 +3,7 @@ import { Home } from './domain/home/home';
 import { ListProduct } from './domain/shared/list-product/list-product';
 import { Pedidos } from './domain/pedidos/pedidos';
 import { ProductDetail } from './domain/shared/product-detail/product-detail';
+import { Ubicacion } from './domain/ubicacion/ubicacion';
 
 
 export const routes: Routes = [
@@ -23,11 +24,15 @@ export const routes: Routes = [
     {
         path: 'producto/:id',
         component: ProductDetail
+    },
+    {
+        path:'ubicacion',
+        component: Ubicacion
+
     }
 
 
         ]
     }
-      
 
 ];
